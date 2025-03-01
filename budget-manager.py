@@ -1,0 +1,52 @@
+# Simple budget manager to calculate income minus categorized expenses
+while True:
+        # Prompt for income; "done" exits the program
+        income = input("Please enter your monthly income (or 'done' to finish):")
+        if income.lower() == "done":
+            print("Exiting Program...")
+            quit() # Clean exit
+        else:
+            try:
+                income = float(income) # Convert to number
+                if income >= 0:
+                    break
+                else:
+                    print("Income must be a positive number")
+            except:
+                print("Income must be a number")
+# Dictionary to store expenses by category
+expenses = {}
+while True:
+        # Get category; "done" ends input
+        expense_category = input("Please enter an expense category (or 'done' to finish):")
+        if expense_category.lower() == "done":
+            break
+        else:
+            expense = input("Please enter the expense amount (or 'done' to finish):")
+            if expense.lower() == "done":
+                break
+            else: 
+                try:   
+                    expense = float(expense)
+                    expense_category_stripped = expense_category.replace(" ", "") # Normalize category
+                    if expense >= 0:
+                        expenses[expense_category_stripped] = expenses.get(expense_category_stripped, 0) + expense
+                    else:
+                        print("Expense must be a positive number")  
+                except:
+                    print("Expense must be a number")
+
+
+
+def printResults():
+    # Calculate and display final results
+    totalExpense = sum(expenses.values())
+    balance = income - totalExpense
+    print("\nResults:")
+    for key, value in expenses.items():
+        print(f"{key} : ${value}")
+    print(f"Balance: ${balance}")
+    print(f"Total Expenses: ${totalExpense}")
+    quit()
+
+printResults()
