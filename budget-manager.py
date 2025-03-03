@@ -22,7 +22,7 @@ while True:
         if expense_category.lower() == "done":
             break
         else:
-            expense = input("Please enter the expense amount (or 'done' to finish):")
+            expense = input(f"Please enter the expense amount for {expense_category} (or 'done' to finish):")
             if expense.lower() == "done":
                 break
             else: 
